@@ -20,7 +20,7 @@ movies_sql = 'SELECT * FROM movies'
 movies = pd.read_sql(movies_sql, conn)
 
 # data load
-movielens = pd.read_csv('data/movielens.csv')
+movielens = pd.read_csv('../data/movielens.csv')
 
 # streamlit 화면 시작
 st.title('Title')
