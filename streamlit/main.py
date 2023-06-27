@@ -32,3 +32,5 @@ st.dataframe(top_rating_df)
 
 conn.commit()
 conn.close()
+
+
