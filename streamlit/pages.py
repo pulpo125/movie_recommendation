@@ -23,7 +23,7 @@ if os.path.isfile('next.p'):
     next_clicked = pkle.load(open('next.p', 'rb'))
     print('next_clicked:', next_clicked)
 
-choice = st.sidebar.radio("Pages",('page1','page2', 'page3'), index=next_clicked)
+choice = st.sidebar.radio("Pages",('user','user_rating', 'recommendation'), index=next_clicked)
 pkle.dump(pages.index(choice), open('next.p', 'wb'))
 
 #--------------------------------------------------------------------------------------------------#
@@ -58,7 +58,7 @@ if choice=='user':
         import time
         time.sleep(2)
 
-        choice = 'page2'
+        choice = 'user_rating'
         pkle.dump(pages.index(choice), open('next.p', 'wb'))
         print('버튼 한 번 클릭')
         streamlit_js_eval(js_expressions="parent.window.location.reload()")
@@ -95,7 +95,7 @@ elif choice=='user_rating':
     rating_cnt = len(rating_list) - rating_list.count(0)
 
     if rating_cnt == 0:
-        st.button('제출', disabled=True)
+        btn_state = st.button('제출', disabled=True)
     else:
         btn_state = st.button('제출', disabled=False)
 
@@ -114,7 +114,7 @@ elif choice=='user_rating':
         import time
         time.sleep(2)
 
-        choice = 'page3'
+        choice = 'recommendation'
         pkle.dump(pages.index(choice), open('next.p', 'wb'))
         print('버튼 한 번 클릭')
         streamlit_js_eval(js_expressions="parent.window.location.reload()")
