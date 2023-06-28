@@ -80,16 +80,15 @@ elif choice=='user_rating':
     # contents
     # info
     st.write('**1(나쁨)~5(좋음) 사이로 평점을 입력해주세요.**')
-    st.write("**평가할 영화가 없다면 :red['Next']버튼을 눌러 주세요. 새로운 영화가 나타납니다.**")
     st.write("**총 10개 이상의 영화를 평가해야 좋은 추천을 받을 수 있습니다.**")
 
     # 좋아하는 영화 선택
     top_movie_id = get_top_idx(movielens)
     top_rating_movies = get_top_movies(movielens, top_movie_id)
-
+    favorite_movies = st.multiselect('좋아하는 영화를 선택해주세요.', top_rating_movies)
     rating_list = []
-    for i in range(len(top_rating_movies)):
-        rating = st.slider(f'{top_rating_movies[i]}의 평점을 입력해주세요.', 0, 5)
+    for i in range(len(favorite_movies)):
+        rating = st.slider(f'{favorite_movies[i]}의 평점을 입력해주세요.', 0, 5)
         rating_list.append(rating)
 
     rating_cnt = len(rating_list) - rating_list.count(0)
