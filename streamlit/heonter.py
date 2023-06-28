@@ -38,7 +38,18 @@ st.write("**총 10개 이상의 영화를 평가해야 좋은 추천을 받을 �
 # 좋아하는 영화 선택
 top_movie_id = get_top_idx(movielens)
 top_rating_movies = get_top_movies(movielens, top_movie_id)
+cnt=0
+movie_top10=[]
+for i in range(10):
+        movie_top10.append(top_rating_movies.pop(0))
+favorite_movies = st.multiselect('좋아하는 영화를 선택해주세요.', movie_top10[cnt:cnt+10])
 
+if st.button('Next'):
+   cnt+=10
+   for i in range(10):
+        movie_top10.append(top_rating_movies.pop(0))
+   favorite_movies = st.multiselect('좋아하는 영화를 선택해주세요.', movie_top10[cnt:cnt+10])
+top_rating_movies    
 rating_list = []
 for i in range(len(top_rating_movies)):
     rating = st.slider(f'{top_rating_movies[i]}의 평점을 입력해주세요.', 0, 5)

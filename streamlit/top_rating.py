@@ -2,7 +2,7 @@ import pandas as pd
 
 def get_top_idx(movielens):
     top_movie_id = list(movielens['movie_id'].value_counts().index)
-    return top_movie_id[:10]
+    return top_movie_id[:100]
 
 def get_top_movies(movielens, top_movie_id):    
     top_rating_movies = []
