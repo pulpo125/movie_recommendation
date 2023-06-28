@@ -145,19 +145,19 @@ elif choice=='recommendation':
     similar_user_id = cos_sim_df[user_id].sort_values(ascending=False).index[1]
 
     # CFModel
-    CFModel01 = tf.keras.models.load_model('../data/CFModel01.h5', compile=False)
-    CFModel01.embeddings = {
-        'user_id': CFModel01.get_layer('user_embedding').weights[0].numpy(), # U (943, 30)
-        'movie_id': CFModel01.get_layer('movie_embedding').weights[0].numpy() # V (1682, 30)
+    CFModel02 = tf.keras.models.load_model('../data/CFModel02.h5', compile=False)
+    CFModel02.embeddings = {
+        'user_id': CFModel02.get_layer('user_embedding').weights[0].numpy(), # U (943, 30)
+        'movie_id': CFModel02.get_layer('movie_embedding').weights[0].numpy() # V (1682, 30)
     }
 
     # recommendation
     st.title('추천 결과입니다. :smile:')
-    similar_result = user_recommendations(CFModel01, movies, ratings, k=10, user_id=similar_user_id, exclude_rated=True)
+    similar_result = user_recommendations(CFModel02, movies, ratings, k=10, user_id=similar_user_id, exclude_rated=True)
     st.write(f'유사한 유저 결과: {similar_user_id}')
     st.dataframe(similar_result)
 
-    user_result = user_recommendations(CFModel01, movies, ratings, k=10, user_id=user_id, exclude_rated=True)
+    user_result = user_recommendations(CFModel02, movies, ratings, k=10, user_id=user_id, exclude_rated=True)
     st.write(f'유저 결과: {user_id}')
     st.dataframe(user_result)
 
